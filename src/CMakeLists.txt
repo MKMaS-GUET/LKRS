@@ -1,0 +1,5 @@
+#add_subdirectory(common)
+add_subdirectory(parser)
+add_subdirectory(database)
+add_subdirectory(query)
+add_subdirectory(cmd)

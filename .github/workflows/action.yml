@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ src, include, test, CMakeLists.txt, conanfile.txt ]
+  pull_request:
+    branches: [ main ]
+    paths: [ src, include, test, CMakeLists.txt, conanfile.txt ]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Configure Conan
+      run: |
+          pip3 install conan --upgrade
+          conan profile new default --detect
+          conan profile update settings.compiler.libcxx=libstdc++11 default
+
+    - name: Clone project
+      uses: actions/checkout@v2 
+
+    - name: Configure CMake
+      run: | 
+        cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+    - name: Test
+      working-directory: ${{github.workspace}}
+      run: ./bin/unitTests
+      

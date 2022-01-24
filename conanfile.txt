@@ -1,0 +1,9 @@
+[requires]
+boost/1.76.0
+spdlog/1.9.2
+gtest/1.11.0
+cpp-httplib/0.9.7
+nlohmann_json/3.10.4
+
+[generators]
+cmake
