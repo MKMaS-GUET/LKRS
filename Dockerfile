@@ -31,4 +31,4 @@ RUN cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release &&\
 
 # test
 WORKDIR /LKRS
-RUN ./bin/unitTests
+# RUN ./bin/unitTests
