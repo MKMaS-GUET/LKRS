@@ -1,5 +1,4 @@
 FROM conanio/gcc9
-MAINTAINER Inno Fang
 
 # use root
 USER root
@@ -10,26 +9,26 @@ RUN pip install conan --upgrade &&\
     conan profile update settings.compiler.libcxx=libstdc++11 default
 
 # copy data
-COPY include /pisano/include
-COPY scripts /pisano/scripts
-COPY src /pisano/src
-COPY test /pisano/test
-COPY CMakeLists.txt /pisano/CMakeLists.txt
-COPY conanfile.txt /pisano/conanfile.txt
-RUN mkdir -p /pisano/bin &&\
-    mkdir -p /pisano/build
+COPY include /LKRS/include
+COPY scripts /LKRS/scripts
+COPY src /LKRS/src
+COPY test /LKRS/test
+COPY CMakeLists.txt /LKRS/CMakeLists.txt
+COPY conanfile.txt /LKRS/conanfile.txt
+RUN mkdir -p /LKRS/bin &&\
+    mkdir -p /LKRS/build
 
 #build
-WORKDIR /pisano/build
+WORKDIR /LKRS/build
 #RUN conan install .. -s build_type=Release --build
 RUN cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release &&\
     cmake --build .
 
 # build
-#WORKDIR /pisano/scripts
+#WORKDIR /LKRS/scripts
 #RUN chmod +x ./build.sh
 #RUN ./build.sh
 
 # test
-WORKDIR /pisano
+WORKDIR /LKRS
 RUN ./bin/unitTests
