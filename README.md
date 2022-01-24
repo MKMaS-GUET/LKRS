@@ -1,10 +1,6 @@
-# PISANO
+# LKRS
 
 A scalable lightweight RDF knowledge retrieval system
-
-> PISANO, that's **P**redicate-**I**ndexed **S**ubject **AN**d **O**bject
-> 
-> **this is a temporary name**
 
 ![](https://img.shields.io/badge/Conan-1.42-brightgreen)
 
@@ -53,6 +49,6 @@ cd scripts
 ### Build with Docker 
 
 ```shell
-docker build --tag pisano:demo .
-docker run -it --name pisano pisano:demo
+docker build --tag lkrs:demo .
+docker run -it --name lkrs lkrs:demo
 ```
